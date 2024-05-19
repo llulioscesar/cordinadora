@@ -218,4 +218,21 @@ Usa SSG cuando:
 - Deseas tiempos de carga rápidos y un rendimiento óptimo.
 - Puedes prerenderizar el contenido durante el build y no necesitas datos en tiempo real.
 
+# Compara el manejo de la autenticación en una aplicación .NET Core con una aplicación PHP. ¿Qué herramientas utilizarías en cada caso?
+El manejo de la autenticación en aplicaciones .NET Core y PHP puede ser diferente en términos de herramientas, implementación y buenas prácticas. A continuación, se presenta una comparación detallada entre ambas plataformas y las herramientas comúnmente utilizadas en cada caso.
 
+### Autenticación en .NET Core
+
+`.NET Core` ofrece un conjunto robusto de herramientas y bibliotecas para la autenticación, que están integradas en el marco. Aquí se detallan algunos aspectos clave y herramientas utilizadas:
+
+Herramientas y Bibliotecas Comunes:
+
+1. ASP.NET Core Identity:
+	- Descripción: Es una biblioteca completa que proporciona funcionalidades para la gestión de usuarios, roles y autenticación.
+	- Características: Registro de usuarios, recuperación de contraseñas, autenticación de dos factores, integración con proveedores externos como Google, Facebook, etc.
+	- Uso:
+  ```csharp
+  services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
+  ```
