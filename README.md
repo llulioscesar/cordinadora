@@ -156,7 +156,7 @@ export class CreateUserDto {
   readonly email: string;
   readonly age?: number;
 }
-
+```
 `update-user.dto.ts`
 ```ts
 import { PartialType } from '@nestjs/mapped-types';
