@@ -194,28 +194,28 @@ SSG se refiere a la generación de páginas estáticas en el momento de la const
 
 Características:
 
-• Generación Estática: Las páginas se generan una vez durante el proceso de construcción y se sirven como HTML estático.
-• Rendimiento Optimo: Las páginas cargan rápidamente porque no necesitan ser generadas en cada solicitud.
-• Actualización Incremental: Puede configurarse para regenerar páginas estáticas periódicamente o cuando se reciben nuevas solicitudes (Incremental Static Regeneration, ISR).
+- Generación Estática: Las páginas se generan una vez durante el proceso de construcción y se sirven como HTML estático.
+- Rendimiento Optimo: Las páginas cargan rápidamente porque no necesitan ser generadas en cada solicitud.
+- Actualización Incremental: Puede configurarse para regenerar páginas estáticas periódicamente o cuando se reciben nuevas solicitudes (Incremental Static Regeneration, ISR).
 
 Uso de SSG:
 
-• Blogs y Sitios de Documentación: Donde el contenido no cambia con frecuencia.
-• Páginas de Marketing y Landing Pages: Que requieren tiempos de carga rápidos para mejorar la experiencia del usuario.
-• Contenido Predeterminado: Páginas que muestran datos que no cambian frecuentemente o que pueden ser prerenderizadas de antemano.
+- Blogs y Sitios de Documentación: Donde el contenido no cambia con frecuencia.
+- Páginas de Marketing y Landing Pages: Que requieren tiempos de carga rápidos para mejorar la experiencia del usuario.
+- Contenido Predeterminado: Páginas que muestran datos que no cambian frecuentemente o que pueden ser prerenderizadas de antemano.
 
 ### ¿Cuándo utilizar uno sobre el otro?
 
 Usa SSR cuando:
 
-• Necesites datos actualizados en cada solicitud.
-• El contenido cambia frecuentemente y debe reflejarse inmediatamente.
-• Requieras personalización basada en la solicitud del usuario o en cookies.
+- Necesites datos actualizados en cada solicitud.
+- El contenido cambia frecuentemente y debe reflejarse inmediatamente.
+- Requieras personalización basada en la solicitud del usuario o en cookies.
 
 Usa SSG cuando:
 
-• El contenido es estático o cambia infrecuentemente.
-• Deseas tiempos de carga rápidos y un rendimiento óptimo.
-• Puedes prerenderizar el contenido durante el build y no necesitas datos en tiempo real.
+- El contenido es estático o cambia infrecuentemente.
+- Deseas tiempos de carga rápidos y un rendimiento óptimo.
+- Puedes prerenderizar el contenido durante el build y no necesitas datos en tiempo real.
 
 
