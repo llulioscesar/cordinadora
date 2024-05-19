@@ -228,11 +228,81 @@ El manejo de la autenticación en aplicaciones .NET Core y PHP puede ser diferen
 Herramientas y Bibliotecas Comunes:
 
 1. ASP.NET Core Identity:
-	- Descripción: Es una biblioteca completa que proporciona funcionalidades para la gestión de usuarios, roles y autenticación.
-	- Características: Registro de usuarios, recuperación de contraseñas, autenticación de dos factores, integración con proveedores externos como Google, Facebook, etc.
-	- Uso:
+ - Descripción: Es una biblioteca completa que proporciona funcionalidades para la gestión de usuarios, roles y autenticación.
+ - Características: Registro de usuarios, recuperación de contraseñas, autenticación de dos factores, integración con proveedores externos como Google, Facebook, etc.
+ - Uso:
   ```csharp
   services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultTokenProviders();
   ```
+2. JWT (JSON Web Tokens):
+ - Descripción: Es utilizado para la autenticación basada en tokens. Es ideal para aplicaciones RESTful.
+ - Características: Tokens seguros y firmados que pueden ser utilizados para validar la identidad de los usuarios.
+ - Uso:
+```csharp
+  services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = "yourissuer.com",
+                ValidAudience = "youraudience.com",
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your_secret_key"))
+            };
+        });
+  ```
+3. OAuth/OpenID Connect:
+ - Descripción: Protocolos estándar para la autenticación y autorización.
+ - Características: Integración con proveedores de identidad externos como Azure AD, Google, y otros.
+ - Uso:
+   ```csharp
+   	services.AddAuthentication(options =>
+	{
+	    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+	    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+	})
+	.AddCookie()
+	.AddOpenIdConnect(options =>
+	{
+	    options.ClientId = "client_id";
+	    options.ClientSecret = "client_secret";
+	    options.Authority = "https://your-identity-provider.com";
+	});
+   ```
+### Autenticación en PHP
+En PHP, el manejo de la autenticación puede variar dependiendo del framework utilizado. Las herramientas y bibliotecas no están tan integradas como en .NET Core, pero hay opciones robustas disponibles.
+
+Herramientas y Bibliotecas Comunes:
+
+1. Laravel Authentication:
+ - Descripción: Laravel, uno de los frameworks más populares de PHP, ofrece un sistema de autenticación completo.
+ - Características: Gestión de usuarios, roles, políticas, autenticación de dos factores, etc.
+ - Uso:
+   ```php
+   	// En Laravel, se puede generar el sistema de autenticación con un solo comando
+	php artisan make:auth
+   ```
+2. JWT (JSON Web Tokens):
+ - Descripción: Similar a .NET Core, JWT se utiliza para la autenticación basada en tokens.
+ - Características: Tokens seguros y firmados.
+ - Biblioteca Recomendada: firebase/php-jwt
+ - Uso:
+   ```php
+	   use \Firebase\JWT\JWT;
+	
+	$key = "your_secret_key";
+	$payload = array(
+	    "iss" => "http://example.org",
+	    "aud" => "http://example.com",
+	    "iat" => 1356999524,
+	    "nbf" => 1357000000
+	);
+	
+	$jwt = JWT::encode($payload, $key);
+	$decoded = JWT::decode($jwt, $key, array('HS256'));
+   ```
